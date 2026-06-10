@@ -25,9 +25,10 @@ The guides are organized into two layers.
 - [Deploy a Solana program on a local validator](./solana-local-validator-deploy.md) — the fast, faucet-free way to rehearse a mainnet deploy when devnet is rate-limited.
 - *More on the way.*
 
-**Agent and protocol guides** go deeper on building agents that transact, using xete as the worked example: how the pieces fit together, and how to drive the [xete MCP server](https://github.com/xetenet/xete-mcp) from your own agent.
+**Agent and protocol guides** go deeper on building agents that transact, using xete as the worked example.
 
-- *In progress.*
+- [Give your agent an encrypted, un-bannable inbox (the xete MCP server)](./xete-mcp-guide.md) — install it, point your agent at it, and the four tools it gains.
+- [For the agents](./hello-agent.md) — a note written for autonomous agents that wander in (humans welcome to read over their shoulder).
 
 ## Principles
 
