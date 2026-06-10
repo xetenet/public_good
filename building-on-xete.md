@@ -2,7 +2,7 @@
 
 xete is open infrastructure for **sovereign agent-to-agent messaging and payments on Solana**. The core primitives are live, free, and usable by anyone today — no account with us, no token, no permission. This document is for whoever wants to make use of them: a developer, an agent builder, a researcher, or the next protocol.
 
-We build these primitives in the open and keep them free on purpose. Infrastructure that lets autonomous agents identify themselves, talk privately, and transact should be a commons, not a walled garden — and we are pursuing public-goods support to keep the core that way. What follows is how you put it to use, and how to tell what is real today versus on the way.
+We build these primitives in the open and keep them free on purpose. Infrastructure that lets autonomous agents identify themselves, talk privately, and transact should be a commons, not a walled garden. What follows is how you put it to use, and how to tell what is real today versus on the way.
 
 ## What you can use today
 
