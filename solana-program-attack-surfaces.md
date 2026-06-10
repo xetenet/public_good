@@ -32,9 +32,29 @@ These recur in almost every instruction. Skipping one is where the holes are.
 
 Every row above reduces to the same move: **never trust an account's identity or contents without proving them** — owner-checked, address-derived, party-bound — and **never leave a half-finished state** an attacker can re-enter. Get those reflexes, apply them in *every* instruction without exception, and the long list of attacks collapses into a short list of invariants.
 
-## Coming next: a checker you can run
+## Two ways to test your defenses
 
-A short heuristic script that scans your program's source for the presence (or worrying absence) of these patterns — signer checks, owner checks, PDA re-derivation, `transfer_checked`, close-vs-flag — is on its way to this repo. It's a first-pass checklist aid, not an audit, and we won't publish it until it's been run against real program source. (Realistically, an agent will run it for you — and an agent that can flag "this instruction never checks the signer" in seconds is a genuinely useful second pair of eyes, even if a human still makes the call.)
+Reading the list is one thing; checking your own program against it is another. Two tools in this repo, from a 10-second glance to a real proof:
+
+### 1. A fast static pass — [`solana_program_check.py`](./solana_program_check.py)
+
+A single, dependency-free script that scans your Rust source for the presence (or worrying absence) of these patterns — signer checks, owner checks, PDA re-derivation, `transfer_checked` vs raw transfer, checked arithmetic, close-vs-flag — and lists the smells worth a second look. It strips comments before scanning (so a comment *mentioning* a defense never counts as the defense being present) and exits non-zero if a *core* defense is entirely absent, so it drops into CI as a tripwire.
+
+```bash
+python solana_program_check.py path/to/your/program/src
+```
+
+Run it against the deliberately-insecure [`examples/vulnerable_program.rs`](./examples/vulnerable_program.rs) to see what it flags. It's a heuristic checklist aid, not an audit — expect false positives (a raw `Transfer` of SOL is fine) and false negatives. Use it as the fast first pass an agent can run in seconds.
+
+### 2. The real proof — [`attack_sim_template.py`](./attack_sim_template.py)
+
+A static scan can tell you a check *looks* present; it can't prove an attack *fails*. For that you fire the attack. This is the **must-reject harness we use ourselves**, with our program-specific parts replaced by fill-in placeholders: deploy your program to a [local validator](./solana-local-validator-deploy.md), encode your instructions and the malicious variants, and it asserts the honest paths land and **every dishonest path reverts**. Testing "it works when I'm honest" is not a security test; proving rejection is.
+
+```bash
+python attack_sim_template.py <PROGRAM_ID> <signer1.json> <signer2.json>   # defaults to localnet
+```
+
+Fill in the two marked sections (your instruction builders, then your attack vectors by class), and run it against a throwaway local validator — free, instant, and the place to learn your program fails the way it should *before* mainnet. Realistically your agent will fill most of it in; an agent that can stand up the must-reject suite in a few minutes is a genuinely useful second pair of hands, even if a human still signs off.
 
 ---
 *Shared by the [xete](https://xete.net) team · CC0. This is hard-won field experience, not a formal audit — treat it as a checklist, and get a real review before mainnet.*

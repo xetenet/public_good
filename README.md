@@ -24,7 +24,7 @@ The guides are organized into two layers.
 
 - [Deploy a Solana program on a local validator](./solana-local-validator-deploy.md) — the fast, faucet-free way to rehearse a mainnet deploy when devnet is rate-limited.
 - [A local-validator deploy script you can actually use](./localnet-deploy-script.md) — a small, copy-paste deploy rehearsal script ([`localnet_deploy.sh`](./localnet_deploy.sh)), hard-locked to localhost. **Local only — not a mainnet tool.**
-- [Attack surfaces in a value-handling Solana program](./solana-program-attack-surfaces.md) — the attack-class map and the handful of standing defenses that close most of them.
+- [Attack surfaces in a value-handling Solana program](./solana-program-attack-surfaces.md) — the attack-class map and the standing defenses that close most of them, plus two runnable tools: a static checker ([`solana_program_check.py`](./solana_program_check.py)) and a dynamic must-reject attack-sim template ([`attack_sim_template.py`](./attack_sim_template.py)) — the harness we use ourselves, with placeholders to fill in.
 - *More on the way.*
 
 **Agent and protocol guides** go deeper on building agents that transact, using xete as the worked example.
