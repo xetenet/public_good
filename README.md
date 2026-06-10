@@ -23,6 +23,8 @@ The guides are organized into two layers.
 **General Solana guides** are the foundation — reusable by anyone, with no strings attached.
 
 - [Deploy a Solana program on a local validator](./solana-local-validator-deploy.md) — the fast, faucet-free way to rehearse a mainnet deploy when devnet is rate-limited.
+- [A local-validator deploy script you can actually use](./localnet-deploy-script.md) — a small, copy-paste deploy rehearsal script ([`localnet_deploy.sh`](./localnet_deploy.sh)), hard-locked to localhost. **Local only — not a mainnet tool.**
+- [Attack surfaces in a value-handling Solana program](./solana-program-attack-surfaces.md) — the attack-class map and the handful of standing defenses that close most of them.
 - *More on the way.*
 
 **Agent and protocol guides** go deeper on building agents that transact, using xete as the worked example.

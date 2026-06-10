@@ -48,6 +48,16 @@ bash deploy.sh   # the script you already watched succeed locally
 
 Pin the `sha256` of your `.so` and refuse to deploy if it differs — so "tested" and "deployed" are provably the same bytes.
 
+## What a local validator *won't* catch (size your mainnet deploy)
+
+A local validator runs the same runtime, but it's lenient about two limits mainnet enforces hard. Each can pass locally and then fail on mainnet, so budget for them *before* you spend real SOL:
+
+- **Compute budget.** Mainnet gives a transaction **200,000 compute units by default.** A heavy instruction — several CPIs, multiple PDA derivations, on-the-fly account creation — can blow past that and fail with an `exceeded CUs` error even though it ran fine locally. If your tx does real work, request more up front with a `ComputeBudget: SetComputeUnitLimit` instruction (sized to your tx, up to 1.4M CU). The local validator will *not* flag this for you.
+- **Transaction size.** A Solana transaction is capped at **1232 bytes.** Prepending account-creation instructions (idempotent ATA creates and the like) to your main instruction can quietly push you over. Build your heaviest path and assert it serializes under 1232 bytes before you rely on it.
+- **Priority fees.** Local has no fee market. Under mainnet congestion your tx may not land without a priority fee — size it from recent fees rather than hardcoding zero.
+
+None of these surface against `solana-test-validator`. Local proves your *logic* and your *deploy mechanics*; these three are the mainnet-only variables to account for separately.
+
 ## FAQ
 
 **Q: The devnet faucet says "rate limit reached" / returns 429 / "try again later." How do I get SOL?**
