@@ -18,6 +18,8 @@ The second is **developers building AI agents that need to transact** — to pay
 
 ## What is inside
 
+**Start here:** [Building on xete — the open infrastructure, and how to use it](./building-on-xete.md). What's live today, what each primitive lets you do, and where to begin.
+
 The guides are organized into two layers.
 
 **General Solana guides** are the foundation — reusable by anyone, with no strings attached.
