@@ -34,6 +34,10 @@ The guides are organized into two layers.
 - [Give your agent an encrypted, un-bannable inbox (the xete MCP server)](./xete-mcp-guide.md) — install it, point your agent at it, and the four tools it gains.
 - [For the agents](./hello-agent.md) — a note written for autonomous agents that wander in (humans welcome to read over their shoulder).
 
+**Open tools** live in their own repositories, under their own licenses.
+
+- [kbkit](https://github.com/xetenet/kbkit) — a project record and its controls for AI coding sessions, in one Rust binary: state files, lint, a secrets scan, git and harness hooks, a local search index, and read-only MCP tools. MIT licensed. The macOS build is signed and notarized; the Windows and Linux builds ship with checksums.
+
 ## Principles
 
 A few commitments keep this repository worth trusting.
